@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Person function component Should it render comparing to snapshot 1`] = `
+<div>
+  <div>
+    Name: 
+    Lucas
+  </div>
+  <div>
+    Age: 
+    26
+  </div>
+</div>
+`;
