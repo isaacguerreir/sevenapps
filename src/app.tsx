@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import Person from './components/Person/Person'
+import List from './components/List/List'
 
 ReactDOM.render(
-    <Person name="Roberto" age="31"/>,
-    document.getElementById('root')
+    	<List />,
+	document.getElementById('root')
 );

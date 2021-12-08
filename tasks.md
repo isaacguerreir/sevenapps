@@ -1,0 +1,4 @@
+- Fetch data from endpoint ok
+- Show this is in the screen ok
+- Filter
+- Infinite loading
