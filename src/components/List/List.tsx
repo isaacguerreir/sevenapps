@@ -1,34 +1,38 @@
 import * as React from 'react'
 import { useState, useEffect } from 'react'
-import useFetch from 'use-http'
+import styled from "styled-components";
+import Grid from '@mui/material/Grid';
 
 import Person from '../Person/Person'
+import { User } from '../../interfaces/User.interface'
 
 interface ListProps {
-	filter: string
+	filterBy: string,
+	list?: Array<User>, 
+	loading?: boolean,
+	quantity?: number
 }
 
-const List = ({ filter } : ListProps) => {
-	const [ list, setList ] = useState([])
-	const { get, post, response, loading, error } = useFetch('https://random-persons.herokuapp.com')
+const List = ({ filterBy, list, loading, quantity } : ListProps) => {
 
-	useEffect(() => {  loadInitialUsers() }, [])
 
-	function filterList(list) {
-		return list.filter((user) => `${user.name} ${user.age}`.includes(filter))
-	}	
+	function filter(list) {
+		return list.filter((user) => `${user.name} ${user.age}`.includes(filterBy))
+	}
 
-	async function loadInitialUsers() {
-    		const initialUsers = await get('/users')
-    		if (response.ok) setList(initialUsers.data)
+	function limit(list) {
+		return list.slice(0, quantity)
+	}
+
+	function render(list) {
+		return list.map((user, key) => <Person key={key} name={user.name} age={user.age} />)
 	}
 
 	return (
-		<div>
-			{error && 'Error!'}
-      			{loading && 'Loading...'}
-			{list.length > 0 && filterList(list).slice(0, 20).map((user, key) => <Person key={key} name={user.name} age={user.age} />)}
-		</div>
+		<Grid container xs={6} md={6}>
+			{ loading && 'Loading...'}
+			{list.length > 0 && render(limit(filter(list)))}
+		</Grid>
 	)
 }
 
