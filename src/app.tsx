@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import List from './components/List/List'
+import Page from './components/Page/Page'
 
 ReactDOM.render(
-    	<List />,
+    	<Page />,
 	document.getElementById('root')
 );
